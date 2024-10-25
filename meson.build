@@ -130,7 +130,6 @@ glib_dep = dependency('glib-2.0', version: '>= 2.76')
 gio_dep = dependency('gio-2.0')
 gio_unix_dep = dependency('gio-unix-2.0')
 json_glib_dep = dependency('json-glib-1.0')
-fuse3_dep = dependency('fuse3', version: '>= 3.10.0')
 gdk_pixbuf_dep = dependency('gdk-pixbuf-2.0')
 gst_pbutils_dep = dependency('gstreamer-pbutils-1.0')
 geoclue_dep = dependency(
@@ -162,16 +161,9 @@ python = pymod.find_installation(
   required: get_option('tests'),
 )
 
-bwrap = find_program('bwrap', required: get_option('sandboxed-image-validation').allowed() or get_option('sandboxed-sound-validation').allowed())
-
-if not bwrap.found()
-  warning('''
-    Sandboxed image and sound validation with Bubblewrap is DISABLED.
-    If your system can run Bubblewrap, it's **hightly** recommended that you enable this
-    option. Bitmap and sound validation and processing is a common attack vector.
-    By proceeding with sandboxed image and sound validation disabled, you acknowledge that you
-    are lowering your system's security, and are subject to known or unknown exploits.
-    ''')
+have_libportal = libportal_dep.found()
+if have_libportal
+  config_h.set('HAVE_LIBPORTAL', 1)
 endif
 
 have_geoclue = geoclue_dep.found()
@@ -228,9 +220,12 @@ pkgconfig.generate(
 
 subdir('data')
 subdir('src')
+<<<<<<< HEAD
 subdir('document-portal')
 subdir('po')
 subdir('doc')
+=======
+>>>>>>> 3a61f29b (redmine #48975 make it build for yocto 4.2)
 
 enable_tests = get_option('tests') \
   .require(pytest.found()) \
@@ -251,15 +246,17 @@ endif
 configure_file(output: 'config.h', configuration: config_h)
 
 summary({
-    'Enable documentation': build_documentation,
     'Enable libsystemd support': have_libsystemd,
     'Enable geoclue support': have_geoclue,
+<<<<<<< HEAD
     'Enable gudev support': have_gudev,
     'Enable test suite': enable_tests,
     'Enable installed tests:': enable_installed_tests,
     'Build man pages': rst2man.found(),
+=======
+    'Enable libportal support': have_libportal,
+>>>>>>> 3a61f29b (redmine #48975 make it build for yocto 4.2)
     'Build flatpak interfaces': flatpak_intf_dir != '',
-    'Sandboxed image validation': bwrap.found(),
   },
   section: 'Optional builds',
   bool_yn: true,

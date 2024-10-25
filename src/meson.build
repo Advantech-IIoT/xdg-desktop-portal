@@ -166,7 +166,6 @@ xdg_desktop_portal_deps = common_deps + [
 ]
 
 incs_xdg_desktop_portal = [
-  include_directories('../document-portal'),
   src_includes,
   common_includes,
 ]
@@ -197,9 +196,6 @@ configure_file(
 )
 
 validate_icon_c_args = ['-D_GNU_SOURCE=1']
-if bwrap.found()
-  validate_icon_c_args += '-DHELPER="@0@"'.format(bwrap.full_path())
-endif
 
 xdp_validate_icon = executable(
   'xdg-desktop-portal-validate-icon',
@@ -211,9 +207,6 @@ xdp_validate_icon = executable(
 )
 
 validate_sound_c_args = ['-D_GNU_SOURCE=1']
-if bwrap.found()
-  validate_sound_c_args += '-DHELPER="@0@"'.format(bwrap.full_path())
-endif
 
 xdp_validate_sound = executable(
   'xdg-desktop-portal-validate-sound',
