@@ -217,19 +217,19 @@ on_bus_acquired (GDBusConnection *connection,
 
   xdp_connection_track_name_owners (connection, peer_died_cb);
 
-  if (!init_permission_store (connection, &error))
-    {
-      g_critical ("No permission store: %s", error->message);
-      exit_with_status (1);
-      return;
-    }
+  // if (!init_permission_store (connection, &error))
+  //   {
+  //     g_critical ("No permission store: %s", error->message);
+  //     exit_with_status (1);
+  //     return;
+  //   }
 
-  if (!init_document_proxy (connection, &error))
-    {
-      g_critical ("No document portal: %s", error->message);
-      exit_with_status (1);
-      return;
-    }
+  // if (!init_document_proxy (connection, &error))
+  //   {
+  //     g_critical ("No document portal: %s", error->message);
+  //     exit_with_status (1);
+  //     return;
+  //   }
 
   lockdown_impl = find_portal_implementation ("org.freedesktop.impl.portal.Lockdown");
   if (lockdown_impl != NULL)

@@ -106,7 +106,6 @@ glib_dep = dependency('glib-2.0', version: '>= 2.66')
 gio_dep = dependency('gio-2.0')
 gio_unix_dep = dependency('gio-unix-2.0')
 json_glib_dep = dependency('json-glib-1.0')
-fuse3_dep = dependency('fuse3', version: '>= 3.10.0')
 gdk_pixbuf_dep = dependency('gdk-pixbuf-2.0')
 gst_pbutils_dep = dependency('gstreamer-pbutils-1.0')
 geoclue_dep = dependency('libgeoclue-2.0',
@@ -116,18 +115,6 @@ libportal_dep = dependency('libportal',
                            required: get_option('libportal'))
 pipewire_dep = dependency('libpipewire-0.3', version: '>= 0.2.90')
 libsystemd_dep = dependency('libsystemd', required: get_option('systemd'))
-
-bwrap = find_program('bwrap', required: get_option('sandboxed-image-validation').allowed() or get_option('sandboxed-sound-validation').allowed())
-
-if not bwrap.found()
-  warning('''
-    Sandboxed image and sound validation with Bubblewrap is DISABLED.
-    If your system can run Bubblewrap, it's **hightly** recommended that you enable this
-    option. Bitmap and sound validation and processing is a common attack vector.
-    By proceeding with sandboxed image and sound validation disabled, you acknowledge that you
-    are lowering your system's security, and are subject to known or unknown exploits.
-    ''')
-endif
 
 have_libportal = libportal_dep.found()
 if have_libportal
@@ -189,24 +176,15 @@ pkgconfig.generate(
 
 subdir('data')
 subdir('src')
-subdir('document-portal')
-subdir('tests')
-subdir('po')
-subdir('doc')
 
 ###### generate config.h
 configure_file(output: 'config.h', configuration: config_h)
 
 summary({
-    'Enable documentation': build_documentation,
     'Enable libsystemd support': have_libsystemd,
     'Enable geoclue support': have_geoclue,
     'Enable libportal support': have_libportal,
-    'Enable installed tests:': enable_installed_tests,
-    'Enable python test suite': enable_pytest,
-    'Build man pages': rst2man.found(),
     'Build flatpak interfaces': flatpak_intf_dir != '',
-    'Sandboxed image validation': bwrap.found(),
   },
   section: 'Optional builds',
   bool_yn: true,
