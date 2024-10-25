@@ -250,8 +250,8 @@ on_bus_acquired (GDBusConnection *connection,
   portal_errors = XDG_DESKTOP_PORTAL_ERROR;
 
   xdp_connection_track_name_owners (connection, peer_died_cb);
-  init_document_proxy (connection);
-  init_permission_store (connection);
+  // init_document_proxy (connection);
+  // init_permission_store (connection);
 
   lockdown_impl = find_portal_implementation ("org.freedesktop.impl.portal.Lockdown");
   if (lockdown_impl != NULL)

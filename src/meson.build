@@ -120,7 +120,7 @@ xdg_desktop_portal_deps = common_deps + [
 ]
 
 incs_xdg_desktop_portal = [
-  include_directories('../document-portal'),
+#  include_directories('../document-portal'),
   src_includes,
   common_includes,
 ]
@@ -154,9 +154,9 @@ configure_file(
 )
 
 validate_icon_c_args = ['-D_GNU_SOURCE=1']
-if bwrap.found()
-  validate_icon_c_args += '-DHELPER="@0@"'.format(bwrap.full_path())
-endif
+#if bwrap.found()
+#  validate_icon_c_args += '-DHELPER="@0@"'.format(bwrap.full_path())
+#endif
 
 executable(
   'xdg-desktop-portal-validate-icon',

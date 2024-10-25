@@ -102,7 +102,7 @@ glib_dep = dependency('glib-2.0', version: '>= 2.66')
 gio_dep = dependency('gio-2.0')
 gio_unix_dep = dependency('gio-unix-2.0')
 json_glib_dep = dependency('json-glib-1.0')
-fuse3_dep = dependency('fuse3', version: '>= 3.10.0')
+#fuse3_dep = dependency('fuse3', version: '>= 3.10.0')
 gdk_pixbuf_dep = dependency('gdk-pixbuf-2.0')
 geoclue_dep = dependency('libgeoclue-2.0',
                          version: '>= 2.5.2',
@@ -112,19 +112,18 @@ libportal_dep = dependency('libportal',
 pipewire_dep = dependency('libpipewire-0.3', version: '>= 0.2.90')
 libsystemd_dep = dependency('libsystemd', required: get_option('systemd'))
 
+#use_bwrap = get_option('sandboxed-image-validation')
+#bwrap = find_program('bwrap', required: use_bwrap)
 
-use_bwrap = get_option('sandboxed-image-validation')
-bwrap = find_program('bwrap', required: use_bwrap)
-
-if not use_bwrap
-  warning('''
-    Sandboxed image validation with Bubblewrap is DISABLED.
-    If your system can run Bubblewrap, it's **hightly** recommended that you enable this
-    option. Bitmap validation and processing is a common attack vector.
-    By proceeding with sandboxed image validation disabled, you acknowledge that you
-    are lowering your system's security, and are subject to known or unknown exploits.
-    ''')
-endif
+#if not use_bwrap
+#  warning('''
+#    Sandboxed image validation with Bubblewrap is DISABLED.
+#    If your system can run Bubblewrap, it's **hightly** recommended that you enable this
+#    option. Bitmap validation and processing is a common attack vector.
+#    By proceeding with sandboxed image validation disabled, you acknowledge that you
+#    are lowering your system's security, and are subject to known or unknown exploits.
+#    ''')
+#endif
 
 have_libportal = libportal_dep.found()
 if have_libportal
@@ -184,10 +183,10 @@ pkgconfig.generate(
 
 subdir('data')
 subdir('src')
-subdir('document-portal')
-subdir('tests')
-subdir('po')
-subdir('doc')
+#subdir('document-portal')
+#subdir('tests')
+#subdir('po')
+#subdir('doc')
 
 ###### generate config.h
 configure_file(output: 'config.h', configuration: config_h)
@@ -201,7 +200,7 @@ summary({
     'Enable python test suite': enable_pytest,
     'Build man pages': rst2man.found(),
     'Build flatpak interfaces': flatpak_intf_dir != '',
-    'Sandboxed image validation': use_bwrap,
+#    'Sandboxed image validation': use_bwrap,
   },
   section: 'Optional builds',
   bool_yn: true,
