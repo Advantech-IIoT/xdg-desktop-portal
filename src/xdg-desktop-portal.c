@@ -38,8 +38,8 @@
 #include "account.h"
 #include "background.h"
 #include "call.h"
-#include "camera.h"
-#include "clipboard.h"
+//#include "camera.h"
+//#include "clipboard.h"
 #include "documents.h"
 #include "dynamic-launcher.h"
 #include "email.h"
@@ -59,10 +59,10 @@
 #include "print.h"
 #include "proxy-resolver.h"
 #include "realtime.h"
-#include "remote-desktop.h"
+//#include "remote-desktop.h"
 #include "request.h"
 #include "restore-token.h"
-#include "screen-cast.h"
+//#include "screen-cast.h"
 #include "screenshot.h"
 #include "secret.h"
 #include "settings.h"
@@ -291,10 +291,10 @@ on_bus_acquired (GDBusConnection *connection,
                                                      lockdown));
 #endif
 
-      export_portal_implementation (connection,
-                                    camera_create (connection,
-                                                   access_impl->dbus_name,
-                                                   lockdown));
+      // export_portal_implementation (connection,
+      //                               camera_create (connection,
+      //                                              access_impl->dbus_name,
+      //                                              lockdown));
 
       tmp = find_portal_implementation ("org.freedesktop.impl.portal.Screenshot");
       if (tmp != NULL)
@@ -343,20 +343,20 @@ on_bus_acquired (GDBusConnection *connection,
     export_portal_implementation (connection,
                                   dynamic_launcher_create (connection, implementation->dbus_name));
 
-  implementation = find_portal_implementation ("org.freedesktop.impl.portal.ScreenCast");
-  if (implementation != NULL)
-    export_portal_implementation (connection,
-                                  screen_cast_create (connection, implementation->dbus_name));
+  // implementation = find_portal_implementation ("org.freedesktop.impl.portal.ScreenCast");
+  // if (implementation != NULL)
+  //   export_portal_implementation (connection,
+  //                                 screen_cast_create (connection, implementation->dbus_name));
 
-  implementation = find_portal_implementation ("org.freedesktop.impl.portal.RemoteDesktop");
-  if (implementation != NULL)
-    export_portal_implementation (connection,
-                                  remote_desktop_create (connection, implementation->dbus_name));
+  // implementation = find_portal_implementation ("org.freedesktop.impl.portal.RemoteDesktop");
+  // if (implementation != NULL)
+  //   export_portal_implementation (connection,
+  //                                 remote_desktop_create (connection, implementation->dbus_name));
 
-  implementation = find_portal_implementation ("org.freedesktop.impl.portal.Clipboard");
-  if (implementation != NULL)
-    export_portal_implementation (
-        connection, clipboard_create (connection, implementation->dbus_name));
+  // implementation = find_portal_implementation ("org.freedesktop.impl.portal.Clipboard");
+  // if (implementation != NULL)
+  //   export_portal_implementation (
+  //       connection, clipboard_create (connection, implementation->dbus_name));
 
   implementation = find_portal_implementation ("org.freedesktop.impl.portal.InputCapture");
   if (implementation != NULL)
