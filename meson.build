@@ -137,7 +137,7 @@ geoclue_dep = dependency(
   version: '>= 2.5.2',
   required: get_option('geoclue'),
 )
-pipewire_dep = dependency('libpipewire-0.3', version: '>= 0.2.90')
+#pipewire_dep = dependency('libpipewire-0.3', version: '>= 0.2.90')
 libsystemd_dep = dependency('libsystemd', required: get_option('systemd'))
 gudev_dep = dependency('gudev-1.0', required: get_option('gudev'))
 umockdev_dep = dependency('umockdev-1.0', required: get_option('tests'))

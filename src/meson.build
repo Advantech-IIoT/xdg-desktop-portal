@@ -85,8 +85,8 @@ endif
 xdg_desktop_portal_sources = files(
   'account.c',
   'background.c',
-  'camera.c',
-  'clipboard.c',
+#  'camera.c',
+#  'clipboard.c',
   'dynamic-launcher.c',
   'email.c',
   'file-chooser.c',
@@ -99,14 +99,14 @@ xdg_desktop_portal_sources = files(
   'network-monitor.c',
   'notification.c',
   'open-uri.c',
-  'pipewire.c',
+#  'pipewire.c',
   'power-profile-monitor.c',
   'print.c',
   'proxy-resolver.c',
   'realtime.c',
   'registry.c',
-  'remote-desktop.c',
-  'screen-cast.c',
+#  'remote-desktop.c',
+#  'screen-cast.c',
   'screenshot.c',
   'secret.c',
   'settings.c',
@@ -161,7 +161,7 @@ endif
 
 xdg_desktop_portal_deps = common_deps + [
   geoclue_dep,
-  pipewire_dep,
+#  pipewire_dep,
   xdp_utils_deps,
 ]
 
