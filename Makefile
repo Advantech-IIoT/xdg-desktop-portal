@@ -28,6 +28,7 @@ linux-build: clean
 
 install:
 	@echo "install xdg-desktop-portal"
+	mkdir -p $(DESTINATION_PATH)/usr/local/libexec
 	cp build/xdg-desktop-portal $(DESTINATION_PATH)/usr/local/libexec/
 	cp build/xdg-desktop-portal.service $(DESTINATION_PATH)/usr/lib/systemd/user/
 	cp build/org.freedesktop.portal.Desktop.service $(DESTINATION_PATH)/usr/share/dbus-1/services/
