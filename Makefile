@@ -1,22 +1,14 @@
 all: build
 
-YOCTO_VERSION=mickledore
+YOCTO_VERSION=scarthgap
+
+DOCKERFILE=../../dockerfile/qcom_1.8_builder.Dockerfile
+DOCKER_TAG_NAME=advantech/qcom-builder-qli_1.8
 
 SRC_PATH=$(CURDIR)
 OUTPUT_PATH=$(CURDIR)/build
 DESTINATION_PATH=$(SRC_PATH)
 VERSION=$(shell git describe --tags `git rev-list --tags --max-count=1`)
-
-ifeq ($(YOCTO_VERSION),kirkstone)
-  DOCKERFILE=./res/kirkstone_qt_builder.Dockerfile
-  DOCKER_TAG_NAME=advantech/qt-builder-kirkstone
-else ifeq ($(YOCTO_VERSION),mickledore)
-  DOCKERFILE=./res/mickledore_qt_builder.Dockerfile
-  DOCKER_TAG_NAME=advantech/qt-builder-mickledore
-else
-  DOCKERFILE=./res/scarthgap_qt_builder.Dockerfile
-  DOCKER_TAG_NAME=advantech/qt-builder-scarthgap
-endif
 
 build-image:
 	docker buildx build --platform linux/arm64 -t $(DOCKER_TAG_NAME) -f $(DOCKERFILE) .
