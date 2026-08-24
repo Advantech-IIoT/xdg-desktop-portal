@@ -109,7 +109,7 @@ geoclue_dep = dependency('libgeoclue-2.0',
                          required: get_option('geoclue'))
 libportal_dep = dependency('libportal',
                            required: get_option('libportal'))
-pipewire_dep = dependency('libpipewire-0.3', version: '>= 0.2.90')
+#pipewire_dep = dependency('libpipewire-0.3', version: '>= 0.2.90')
 libsystemd_dep = dependency('libsystemd', required: get_option('systemd'))
 
 #use_bwrap = get_option('sandboxed-image-validation')
@@ -197,7 +197,7 @@ summary({
     'Enable geoclue support': have_geoclue,
     'Enable libportal support': have_libportal,
     'Enable installed tests:': enable_installed_tests,
-    'Enable python test suite': enable_pytest,
+#    'Enable python test suite': enable_pytest,
     'Build man pages': rst2man.found(),
     'Build flatpak interfaces': flatpak_intf_dir != '',
 #    'Sandboxed image validation': use_bwrap,

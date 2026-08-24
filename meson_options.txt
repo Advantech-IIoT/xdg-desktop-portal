@@ -44,11 +44,11 @@ option('installed-tests',
         description: 'Enable installation of some test cases')
 option('pytest',
         type: 'feature',
-        value: 'auto',
+        value: 'disabled',
         description: 'Enable the pytest-based test suite')
 option('man-pages',
        type: 'feature',
-       value: 'auto',
+       value: 'disabled',
        description: 'Build man pages (requires rst2man)')
 option('sandboxed-image-validation',
        type: 'boolean',
