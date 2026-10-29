@@ -1,6 +1,6 @@
 all: build
 
-YOCTO_VERSION=mickledore
+YOCTO_VERSION=wrynose
 
 SRC_PATH=$(CURDIR)
 OUTPUT_PATH=$(CURDIR)/build
@@ -13,9 +13,12 @@ ifeq ($(YOCTO_VERSION),kirkstone)
 else ifeq ($(YOCTO_VERSION),mickledore)
   DOCKERFILE=./res/mickledore_qt_builder.Dockerfile
   DOCKER_TAG_NAME=advantech/qt-builder-mickledore
-else
+else ifeq ($(YOCTO_VERSION),scarthgap)
   DOCKERFILE=./res/scarthgap_qt_builder.Dockerfile
   DOCKER_TAG_NAME=advantech/qt-builder-scarthgap
+else
+  DOCKERFILE=./res/wrynose_qt_builder.Dockerfile
+  DOCKER_TAG_NAME=advantech/qt-builder-wrynose
 endif
 
 build-image:
